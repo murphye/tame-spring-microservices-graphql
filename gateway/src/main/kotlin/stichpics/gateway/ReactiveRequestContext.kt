@@ -1,6 +1,5 @@
 package stichpics.gateway
 
-import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.server.reactive.ServerHttpRequest
