@@ -1,10 +1,10 @@
 type Query {
     users: [User]
-    userById(id: ID): User
+    userById(userId: ID): User
 }
 type User {
     userId: ID!
     userName: String
-    email: String
-    age: Int
+    userEmail: String
+    userAge: Int
 }
