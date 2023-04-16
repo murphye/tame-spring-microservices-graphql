@@ -36,7 +36,5 @@ class ReactiveRequestContext : WebFilter {
             // Return the HttpHeaders from the ServerHttpRequest
             httpRequest.headers
         }
-
-        suspend fun getHeadersAwait() = getHeaders().awaitSingle()
     }
 }

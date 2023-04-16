@@ -14,7 +14,7 @@ class GatewayController(private val lilo: Lilo) {
 
     @RequestMapping("/request")
     suspend fun getRequest(): String? {
-        return ReactiveRequestContext.getHeadersAwait().getFirst("user")
+        return ReactiveRequestContext.getHeaders().awaitSingle().getFirst("user")
     }
 
     @ResponseBody
