@@ -1,0 +1,5 @@
+{
+  "name": "User Service Schema",
+  "schemaPath": "src/main/resources/graphql/schema.graphqls",
+  "extensions": {}
+}

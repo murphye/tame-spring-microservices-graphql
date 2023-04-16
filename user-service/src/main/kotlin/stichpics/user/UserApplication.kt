@@ -1,4 +1,4 @@
-package stichpics.users
+package stichpics.user
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

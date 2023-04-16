@@ -1,10 +1,10 @@
-package stichpics.users
+package stichpics.user
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class UsersApplicationTests {
+class UserApplicationTests {
 
 	@Test
 	fun contextLoads() {
