@@ -1,11 +1,11 @@
-package com.estore
+package stichpics.gateway
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class OnlineStoreServiceApplication
+class GatewayApplication
 
 fun main(args: Array<String>) {
-	runApplication<OnlineStoreServiceApplication>(*args)
+	runApplication<GatewayApplication>(*args)
 }
