@@ -40,32 +40,6 @@ EOF
 ```json
 {
   "data": {
-    "users": [
-      {
-        "userId": "murphye",
-        "userName": "Eric",
-        "userAge": 43,
-        "userEmail": "eric@murphy.com"
-      },
-      {
-        "userId": "bob123",
-        "userName": "Bob",
-        "userAge": 60,
-        "userEmail": "bob123@yahoo.com"
-      },
-      {
-        "userId": "michelle12",
-        "userName": "Michelle",
-        "userAge": 24,
-        "userEmail": "michelle12@gmail.com"
-      },
-      {
-        "userId": "firatkucuk",
-        "userName": "Fırat",
-        "userAge": 30,
-        "userEmail": "firat@kucuk.com"
-      }
-    ],
     "pics": [
       {
         "picId": "123",
@@ -152,6 +126,32 @@ EOF
             "likeCount": 2
           }
         ]
+      }
+    ],
+    "users": [
+      {
+        "userId": "murphye",
+        "userName": "Eric",
+        "userAge": 43,
+        "userEmail": "eric@murphy.com"
+      },
+      {
+        "userId": "bob123",
+        "userName": "Bob",
+        "userAge": 60,
+        "userEmail": "bob123@yahoo.com"
+      },
+      {
+        "userId": "michelle12",
+        "userName": "Michelle",
+        "userAge": 24,
+        "userEmail": "michelle12@gmail.com"
+      },
+      {
+        "userId": "firatkucuk",
+        "userName": "Fırat",
+        "userAge": 30,
+        "userEmail": "firat@kucuk.com"
       }
     ]
   }
