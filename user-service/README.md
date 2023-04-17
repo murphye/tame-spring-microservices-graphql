@@ -4,11 +4,11 @@
 
 [Access GraphiQL Console](http://localhost:8081/graphiql)
 
-### Query `userById` with `curl`
+### Query `user` with `curl`
 
 ```shell
 query='query($userId: ID) {
-    userById(userId: $userId) {
+    user(userId: $userId) {
         userId
         userName
         userAge

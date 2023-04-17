@@ -12,11 +12,6 @@ import org.springframework.web.reactive.function.client.WebClient
 import reactor.core.publisher.Mono
 import java.util.concurrent.CompletableFuture
 
-/**
- * Build Lilo from a comma-delimited configuration Value of "lilo.graphql-urls" in the
- * application.properties/yaml. Additionally, for incoming requests, the HTTP headers will
- * be automatically propagated to the upstream GraphQL endpoints.
- */
 @Configuration
 class LiloConfiguration {
 
@@ -24,41 +19,49 @@ class LiloConfiguration {
         .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
         .build()
 
+    private fun introspectionRetriever(graphqlSchemaUrl: String) = AsyncIntrospectionRetriever { _, _, query, _ -> get(graphqlSchemaUrl, query) }
+
+    private fun queryRetriever(graphqlQueryUrl: String) = AsyncQueryRetriever { _, _, query, _ -> get(graphqlQueryUrl, query.query) }
+
     @Bean
-    fun lilo(@Value("\${lilo.graphql-urls}") graphqlUrls: Array<String>): Lilo {
-        var liloBuilder = Lilo.builder()
-
-        for(graphqlUrl in graphqlUrls) {
-            val introspectionRetriever = AsyncIntrospectionRetriever { _, _, query, _ -> get(graphqlUrl, query) }
-            val queryRetriever = AsyncQueryRetriever { _, _, query, _ -> get(graphqlUrl, query.query) }
-
-            liloBuilder = liloBuilder.addSource(
-                RemoteSchemaSource.create(
-                    graphqlUrl.split("://").last(), // Make the schemaName from the URL (for simplicity)
-                    introspectionRetriever,
-                    queryRetriever
-                    ))
-        }
-
-        return liloBuilder.build()
+    fun lilo (
+        @Value("\${lilo.url.user}") userUrl: String,
+        @Value("\${lilo.url.pic}")  picUrl: String,
+        @Value("\${lilo.url.like}") likeUrl: String
+    ): Lilo {
+        return Lilo.builder().addSource(
+            RemoteSchemaSource.create(
+                "userService",
+                introspectionRetriever(userUrl),
+                queryRetriever(userUrl)
+            )
+        ).addSource(
+            RemoteSchemaSource.create(
+                "picService",
+                introspectionRetriever(picUrl),
+                queryRetriever(picUrl)
+            )
+        ).addSource(
+            RemoteSchemaSource.create(
+                "likeService",
+                introspectionRetriever(likeUrl),
+                queryRetriever(likeUrl)
+            )
+        ).build()
     }
 
     /**
-     * Query the GraphQL endpoint while propagating the HTTP headers from the original request.
+     * Query the GraphQL endpoint
      */
     private fun get(graphqlUrl: String, query: String): CompletableFuture<String?> {
-        return ReactiveRequestContext.getHeaders().flatMap { headers ->
-             webClient
-                .post()
-                .uri(graphqlUrl)
-                .headers {
-                    it.addAll(headers)
-                }
-                .bodyValue(query)
-                .retrieve()
-                .toEntity(String::class.java)
-                .mapNotNull { obj -> obj.body }
-        }.toFuture()
+        return webClient
+            .post()
+            .uri(graphqlUrl)
+            .bodyValue(query)
+            .retrieve()
+            .toEntity(String::class.java)
+            .mapNotNull { obj ->
+                obj.body }.toFuture()
     }
 }
 

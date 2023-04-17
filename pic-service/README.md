@@ -4,11 +4,11 @@
 
 [Access GraphiQL Console](http://localhost:8081/graphiql)
 
-### Query `picById` with `curl`
+### Query `pic` with `curl`
 
 ```shell
 query='query($picId: ID) {
-    picById(picId: $picId) {
+    pic(picId: $picId) {
         picId
         userId
         picUrl

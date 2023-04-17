@@ -9,11 +9,6 @@ import org.springframework.web.bind.annotation.*
 @RestController
 class GatewayController(private val lilo: Lilo) {
 
-    @RequestMapping("/request")
-    suspend fun getRequest(): String? {
-        return ReactiveRequestContext.getHeaders().awaitSingle().getFirst("user")
-    }
-
     @ResponseBody
     @PostMapping("/graphql")
     @NotNull

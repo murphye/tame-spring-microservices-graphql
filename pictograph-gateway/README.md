@@ -6,9 +6,26 @@
 
 ```shell
 query='query {
-    users
-    pics
-    likes
+    pics {
+        picId
+        userId
+        picUrl
+        picComment
+    }
+    likes {
+        picId
+        likes {
+            userId
+            likeComment
+            likeCount
+        }
+    }
+    users {
+        userId
+        userName
+        userAge
+        userEmail
+    }
 }'
 variables='{}'
 curl -i -X POST http://localhost:8080/graphql \

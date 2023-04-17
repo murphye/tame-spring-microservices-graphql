@@ -24,7 +24,7 @@ class UserController {
     }
 
     @QueryMapping
-    fun userById(@Argument userId: String): User {
+    fun user(@Argument userId: String): User {
         return users[0]
     }
 

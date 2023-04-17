@@ -1,6 +1,6 @@
 type Query {
     users: [User]
-    userById(userId: ID): User
+    user(userId: ID): User
 }
 type User {
     userId: ID!
