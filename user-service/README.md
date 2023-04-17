@@ -1,3 +1,6 @@
+# User Service
+
+## GraphQL Executions
 
 ### userById
 
@@ -37,26 +40,3 @@ curl -i -X POST http://localhost:8081/graphql \
       {"query": "$(echo $query)", "variables": $variables}
 EOF
 ```
-
-
-
-
-
-
-
-
-
-query bookDetails {
-userById(userId: "book-1") {
-userId
-}
-}
-
-query users {
-    users {
-        userId
-        userName
-        userAge
-        userEmail
-    }
-}
