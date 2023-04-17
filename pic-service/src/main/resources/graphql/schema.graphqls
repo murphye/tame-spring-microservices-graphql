@@ -1,0 +1,10 @@
+type Query {
+    pics: [Pic]
+    picById(picId: ID): Pic
+}
+type Pic {
+    picId: ID!
+    userId: String
+    picUrl: String
+    picComment: String
+}

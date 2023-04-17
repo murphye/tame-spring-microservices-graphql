@@ -1,0 +1,9 @@
+type Query {
+    likesByPicId(picId: ID): [Like]
+}
+type Like {
+    likeId: ID!
+    userId: String
+    likeComment: String
+    likeCount: Int
+}
