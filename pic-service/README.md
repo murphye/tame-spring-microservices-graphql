@@ -7,16 +7,16 @@
 ### Query `picById` with `curl`
 
 ```shell
-query='query($userId: ID) {
-    userById(userId: $userId) {
+query='query($picId: ID) {
+    picById(picId: $picId) {
+        picId
         userId
-        userName
-        userAge
-        userEmail
+        picUrl
+        picComment
     }
 }'
 variables='{
-  "userId": "murphye"
+  "picId": "123"
 }'
 curl -i -X POST http://localhost:8082/graphql \
   -H 'Content-Type: application/json' \
@@ -28,11 +28,11 @@ EOF
 ### Query `pics` with `curl`
 ```shell
 query='query {
-    users {
+    pics {
+        picId
         userId
-        userName
-        userAge
-        userEmail
+        picUrl
+        picComment
     }
 }'
 variables='{}'
