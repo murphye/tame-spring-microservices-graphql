@@ -27,11 +27,11 @@ curl -i -X POST http://localhost:8083/graphql \
 EOF
 ```
 
-### Query `likesForPics` with `curl`
+### Query `likes` with `curl`
 
 ```shell
 query='query {
-    likesForPics {
+    likes {
         picId
         likes {
             userId

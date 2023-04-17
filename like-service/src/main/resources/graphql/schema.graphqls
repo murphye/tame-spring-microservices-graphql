@@ -1,5 +1,5 @@
 type Query {
-    likesForPics: [LikesForPic]
+    likes: [LikesForPic]
     likesForPic(picId: ID): LikesForPic
 }
 
