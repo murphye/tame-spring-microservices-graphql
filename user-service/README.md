@@ -1,8 +1,10 @@
 # User Service
 
-## GraphQL Executions
+## GraphQL Queries
 
-### userById
+[Access GraphiQL Console](localhost:8081/graphiql)
+
+### Query `userById` with `curl`
 
 ```shell
 query='query($userId: ID) {
@@ -23,7 +25,7 @@ curl -i -X POST http://localhost:8081/graphql \
 EOF
 ```
 
-### users
+### Query `users` with `curl`
 ```shell
 query='query {
     users {
