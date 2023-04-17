@@ -1,6 +1,6 @@
 # *"Pictograph"* GraphQL + Lilo Demo
 
-*Pictograph* is an Instagram-like demo application that has 4 microservices with a GraphQL endpoint:
+*Pictograph* is a demo application with an Instagram-like API that is implemented with GraphQL. It's comprised of the following microservices:
 
 1. **pic-service:** Returns JSON with Pic metadata
 2. **user-service:** Returns JSON for User data
