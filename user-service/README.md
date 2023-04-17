@@ -2,7 +2,7 @@
 
 ## GraphQL Queries
 
-[Access GraphiQL Console](localhost:8081/graphiql)
+[Access GraphiQL Console](http://localhost:8081/graphiql)
 
 ### Query `userById` with `curl`
 
