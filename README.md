@@ -1,4 +1,4 @@
-# StichPics GraphQL + Lilo Demo Application
+# StitchPics GraphQL + Lilo Demo Application
 
 This is an Instagram-like application that has 4 microservices with a GraphQL endpoint:
 
