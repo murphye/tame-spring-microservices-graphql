@@ -1,6 +1,7 @@
 type Query {
     pics: [Pic]
     pic(picId: ID): Pic
+    picByUserId(userId: ID): Pic
 }
 type Pic {
     picId: ID!

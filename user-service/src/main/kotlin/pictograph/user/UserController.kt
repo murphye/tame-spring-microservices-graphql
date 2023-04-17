@@ -24,8 +24,13 @@ class UserController {
     }
 
     @QueryMapping
-    fun user(@Argument userId: String): User {
-        return users[0]
+    fun user(@Argument userId: String): User? {
+        for(user in users) {
+            if(user.userId == userId) {
+                return user
+            }
+        }
+        return null
     }
 
 }

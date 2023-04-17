@@ -24,7 +24,22 @@ class PicController {
     }
 
     @QueryMapping
-    fun picById(@Argument picId: String): Pic {
-        return pics[0]
+    fun pic(@Argument picId: String): Pic? {
+        for(pic in pics) {
+            if(pic.picId == picId) {
+                return pic
+            }
+        }
+        return null
+    }
+
+    @QueryMapping
+    fun picByUserId(@Argument userId: String): Pic? {
+        for(pic in pics) {
+            if(pic.userId == userId) {
+                return pic
+            }
+        }
+        return null
     }
 }

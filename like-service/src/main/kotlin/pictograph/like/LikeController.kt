@@ -14,23 +14,23 @@ class LikeController {
     fun load() {
 
         var likes = mutableListOf<Like>()
-        likes.add(Like("123-1","firatkucuk","Beautiful mountain!", 1))
-        likes.add(Like("123-2","michelle12","Majestic!", 2))
+        likes.add(Like("123-1","firatkucuk","123","Beautiful mountain!", 1))
+        likes.add(Like("123-2","michelle12", "123","Majestic!", 2))
         likesMap["123"] = likes
 
         likes = mutableListOf()
-        likes.add(Like("234-1","firatkucuk","Happy Birthday!", 1))
-        likes.add(Like("234-2","michelle12","Happy Birthday!", 2))
-        likes.add(Like("234-3","murphye","Happy B-Day.", 3))
+        likes.add(Like("234-1","firatkucuk", "234", "Happy Birthday!", 1))
+        likes.add(Like("234-2","michelle12", "234", "Happy Birthday!", 2))
+        likes.add(Like("234-3","murphye", "234", "Happy B-Day.", 3))
         likesMap["234"] = likes
 
         likes = mutableListOf()
-        likes.add(Like("345-1","michelle12","Jealous!", 1))
+        likes.add(Like("345-1","michelle12", "345","Jealous!", 1))
         likesMap["345"] = likes
 
         likes = mutableListOf()
-        likes.add(Like("456-1","murphye","Pretty!", 1))
-        likes.add(Like("456-2","michelle12","I want to go there!", 2))
+        likes.add(Like("456-1","murphye", "456", "Pretty!", 1))
+        likes.add(Like("456-2","michelle12", "456", "I want to go there!", 2))
         likesMap["456"] = likes
     }
 
@@ -48,5 +48,18 @@ class LikeController {
     @QueryMapping
     fun likesForPic(@Argument picId: String): LikesForPic {
         return LikesForPic(picId, likesMap.get(picId))
+    }
+
+    @QueryMapping
+    fun likesByUserId(@Argument userId: String): List<Like> {
+        val likeMatches = mutableListOf<Like>()
+        for(likeValue in likesMap.values) {
+            for(like in likeValue) {
+                if(like.userId == userId) {
+                    likeMatches.add(like)
+                }
+            }
+        }
+        return likeMatches
     }
 }

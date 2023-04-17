@@ -2,6 +2,74 @@
 
 ## GraphQL Queries with Lilo
 
+### Query a User with `curl`
+
+```shell
+query='query($userId: ID) {
+    user(userId: $userId) {
+        userId
+        userName
+        userAge
+        userEmail
+    }
+    picByUserId(userId: $userId) {
+        picId
+        userId
+        picUrl
+        picComment
+    }
+    likesByUserId(userId: $userId) {
+        userId
+        picId
+        likeComment
+        likeCount
+    }
+}'
+variables='{
+  "userId": "murphye"
+}'
+curl -i -X POST http://localhost:8080/graphql \
+  -H 'Content-Type: application/json' \
+  -d @- <<EOF
+      {"query": "$(echo $query)", "variables": $variables}
+EOF
+```
+
+#### Sample Response
+
+```json
+{
+  "data": {
+    "user": {
+      "userId": "murphye",
+      "userName": "Eric",
+      "userAge": 43,
+      "userEmail": "eric@murphy.com"
+    },
+    "picByUserId": {
+      "picId": "123",
+      "userId": "murphye",
+      "picUrl": "https://cdn.pictograph.com/pics/123.jpg",
+      "picComment": "Check out my view of Mt. Rainier!"
+    },
+    "likesByUserId": [
+      {
+        "userId": "murphye",
+        "picId": "234",
+        "likeComment": "Happy B-Day.",
+        "likeCount": 3
+      },
+      {
+        "userId": "murphye",
+        "picId": "456",
+        "likeComment": "Pretty!",
+        "likeCount": 1
+      }
+    ]
+  }
+}
+```
+
 ### Query All with `curl`
 
 ```shell
