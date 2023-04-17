@@ -12,7 +12,7 @@ query='query($userId: ID) {
         userAge
         userEmail
     }
-    picByUserId(userId: $userId) {
+    picsByUserId(userId: $userId) {
         picId
         userId
         picUrl
@@ -46,12 +46,14 @@ EOF
       "userAge": 43,
       "userEmail": "eric@murphy.com"
     },
-    "picByUserId": {
-      "picId": "123",
-      "userId": "murphye",
-      "picUrl": "https://cdn.pictograph.com/pics/123.jpg",
-      "picComment": "Check out my view of Mt. Rainier!"
-    },
+    "picsByUserId": [
+      {
+        "picId": "123",
+        "userId": "murphye",
+        "picUrl": "https://cdn.pictograph.com/pics/123.jpg",
+        "picComment": "Check out my view of Mt. Rainier!"
+      }
+    ],
     "likesByUserId": [
       {
         "userId": "murphye",

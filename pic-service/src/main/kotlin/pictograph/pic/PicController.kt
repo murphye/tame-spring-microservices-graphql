@@ -34,12 +34,13 @@ class PicController {
     }
 
     @QueryMapping
-    fun picByUserId(@Argument userId: String): Pic? {
+    fun picsByUserId(@Argument userId: String): List<Pic> {
+        val matchedPics = mutableListOf<Pic>()
         for(pic in pics) {
             if(pic.userId == userId) {
-                return pic
+                matchedPics.add(pic)
             }
         }
-        return null
+        return matchedPics
     }
 }
