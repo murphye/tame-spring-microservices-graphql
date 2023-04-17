@@ -35,6 +35,17 @@ class LikeController {
     }
 
     @QueryMapping
+    fun likesForPics(): List<LikesForPic> {
+        val likesForPics = mutableListOf<LikesForPic>()
+
+        for(picId in likesMap.keys) {
+            likesForPics.add(LikesForPic(picId, likesMap.get(picId)))
+        }
+
+        return likesForPics
+    }
+
+    @QueryMapping
     fun likesForPic(@Argument picId: String): LikesForPic {
         return LikesForPic(picId, likesMap.get(picId))
     }
