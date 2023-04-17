@@ -4,4 +4,4 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
-rootProject.name = "gateway"
+rootProject.name = "pictograph-gateway"

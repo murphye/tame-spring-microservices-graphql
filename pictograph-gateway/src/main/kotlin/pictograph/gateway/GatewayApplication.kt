@@ -1,4 +1,4 @@
-package stichpics.gateway
+package pictograph.gateway
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

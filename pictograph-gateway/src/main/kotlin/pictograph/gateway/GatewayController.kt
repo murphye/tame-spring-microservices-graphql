@@ -1,4 +1,4 @@
-package stichpics.gateway
+package pictograph.gateway
 
 import io.fria.lilo.GraphQLRequest
 import io.fria.lilo.Lilo
