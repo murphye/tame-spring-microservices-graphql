@@ -1,6 +1,12 @@
 type Query {
-    likesByPicId(picId: ID): [Like]
+    likesForPic(picId: ID): LikesForPic
 }
+
+type LikesForPic {
+    picId: String
+    likes: [Like]
+}
+
 type Like {
     likeId: ID!
     userId: String
