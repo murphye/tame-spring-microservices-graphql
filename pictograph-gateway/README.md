@@ -70,25 +70,25 @@ EOF
       {
         "picId": "123",
         "userId": "murphye",
-        "picUrl": "https://cdn.stitchpic.com/pics/123.jpg",
+        "picUrl": "https://cdn.pictograph.com/pics/123.jpg",
         "picComment": "Check out my view of Mt. Rainier!"
       },
       {
         "picId": "234",
         "userId": "bob123",
-        "picUrl": "https://cdn.stitchpic.com/pics/234.jpg",
+        "picUrl": "https://cdn.pictograph.com/pics/234.jpg",
         "picComment": "My daughter Ellie turned 5 today! Happy Birthday!"
       },
       {
         "picId": "345",
         "userId": "michelle12",
-        "picUrl": "https://cdn.stitchpic.com/pics/345.jpg",
+        "picUrl": "https://cdn.pictograph.com/pics/345.jpg",
         "picComment": "My husband bought me these beautiful roses!"
       },
       {
         "picId": "456",
         "userId": "firatkucuk",
-        "picUrl": "https://cdn.stitchpic.com/pics/456.jpg",
+        "picUrl": "https://cdn.pictograph.com/pics/456.jpg",
         "picComment": "The landscape is so beautiful here!"
       }
     ],
