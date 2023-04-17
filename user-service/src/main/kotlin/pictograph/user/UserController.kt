@@ -1,4 +1,4 @@
-package stitchpics.user
+package pictograph.user
 
 import jakarta.annotation.PostConstruct
 import org.springframework.graphql.data.method.annotation.Argument

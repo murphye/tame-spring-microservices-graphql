@@ -1,4 +1,4 @@
-package stitchpics.user
+package pictograph.user
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

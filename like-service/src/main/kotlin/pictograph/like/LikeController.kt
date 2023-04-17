@@ -1,4 +1,4 @@
-package stitchpics.like
+package pictograph.like
 
 import jakarta.annotation.PostConstruct
 import org.springframework.graphql.data.method.annotation.Argument

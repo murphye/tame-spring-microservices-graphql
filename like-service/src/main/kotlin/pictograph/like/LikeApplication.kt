@@ -1,11 +1,11 @@
-package stitchpics.pic
+package pictograph.like
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class PicApplication
+class LikeApplication
 
 fun main(args: Array<String>) {
-	runApplication<PicApplication>(*args)
+	runApplication<LikeApplication>(*args)
 }

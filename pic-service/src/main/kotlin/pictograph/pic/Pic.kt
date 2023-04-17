@@ -1,4 +1,4 @@
-package stitchpics.pic
+package pictograph.pic
 
 data class Pic(
     var picId: String,

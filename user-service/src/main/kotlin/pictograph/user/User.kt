@@ -1,4 +1,4 @@
-package stitchpics.user
+package pictograph.user
 
 data class User(
     var userId: String,

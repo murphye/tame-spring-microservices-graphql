@@ -1,4 +1,4 @@
-package stitchpics.like
+package pictograph.like
 
 data class Like(
     var likeId: String,

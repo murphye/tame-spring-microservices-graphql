@@ -1,10 +1,10 @@
-package stitchpics.pic
+package pictograph.like
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class PicApplicationTests {
+class LikeApplicationTests {
 
 	@Test
 	fun contextLoads() {
