@@ -1,6 +1,6 @@
 # *"Pictograph"* GraphQL + Lilo Demo
 
-*Pictograph* is a demo application with an API that is implemented with GraphQL. It's meant to mimic a photo sharing site where users can "like" pictures.
+*Pictograph* is a demo application with an API that is implemented with GraphQL. It's meant to mimic a photo sharing website API where users can "like" pictures.
 
 *Pictograph* is comprised of the following microservices:
 
