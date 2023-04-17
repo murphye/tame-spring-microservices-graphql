@@ -1,11 +1,11 @@
-# StitchPics GraphQL + Lilo Demo Application
+# *"Pictograph"* GraphQL + Lilo Demo
 
-This is an Instagram-like application that has 4 microservices with a GraphQL endpoint:
+*Pictograph* is an Instagram-like demo application that has 4 microservices with a GraphQL endpoint:
 
-1. **Pics:** Returns JSON with pictures metadata
-2. **Users:** Returns JSON
-3. **Likes:** Returns JSON for Users who liked Pics
-4. **Gateway** Returns JSON with an aggregation of Pics, Users, and Likes
+1. **pic-service:** Returns JSON with Pic metadata
+2. **user-service:** Returns JSON for User data
+3. **like-service:** Returns JSON for Users who liked Pics
+4. **pictograph-gateway** Returns JSON with an aggregation of Pics, Users, and Likes
 
 ## Sample Results
 
