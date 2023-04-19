@@ -9,4 +9,4 @@
 3. **like-service:** Returns JSON for Users who liked Pictures
 4. **pictograph-gateway** Returns JSON with data aggregated from Pics, Users, and Likes
 
-**pictograph-gateway** uses GraphQL Stiching implemented with Lilo to combine the results from the other 3 services.
+**pictograph-gateway** uses GraphQL Stitching implemented with Lilo to combine the results from the other 3 services.
