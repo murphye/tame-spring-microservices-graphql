@@ -25,13 +25,13 @@ class LiloConfiguration(
         .build()
 
     @Suppress("UNCHECKED_CAST")
-    private fun introspectionRetriever(graphqlSchemaUrl: String) = AsyncIntrospectionRetriever { _, _, query, localContext -> retrieve(graphqlSchemaUrl, query,
-        localContext as MultiValueMap<String, String>
+    private fun introspectionRetriever(graphqlSchemaUrl: String) = AsyncIntrospectionRetriever { _, _, query, localContext ->
+        retrieve(graphqlSchemaUrl, query, localContext as MultiValueMap<String, String>
     ) }
 
     @Suppress("UNCHECKED_CAST")
-    private fun queryRetriever(graphqlQueryUrl: String) = AsyncQueryRetriever { _, _, query, localContext -> retrieve(graphqlQueryUrl, query.query,
-        localContext as MultiValueMap<String, String>
+    private fun queryRetriever(graphqlQueryUrl: String) = AsyncQueryRetriever { _, _, query, localContext ->
+        retrieve(graphqlQueryUrl, query.query, localContext as MultiValueMap<String, String>
     ) }
 
     @Bean
