@@ -30,6 +30,7 @@ variables='{
 }'
 curl -i -X POST http://localhost:8080/graphql \
   -H 'Content-Type: application/json' \
+  -H 'tenant-id: acme' \
   -d @- <<EOF
       {"query": "$(echo $query)", "variables": $variables}
 EOF
