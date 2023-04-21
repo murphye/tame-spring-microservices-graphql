@@ -9,9 +9,11 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
+import org.springframework.util.MultiValueMap
 import org.springframework.web.reactive.function.client.WebClient
 import reactor.core.publisher.Mono
 import java.util.concurrent.CompletableFuture
+import java.util.function.Consumer
 
 @Configuration
 class LiloConfiguration {
@@ -20,12 +22,14 @@ class LiloConfiguration {
         .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
         .build()
 
+    @Suppress("UNCHECKED_CAST")
     private fun introspectionRetriever(graphqlSchemaUrl: String) = AsyncIntrospectionRetriever { _, _, query, localContext -> retrieve(graphqlSchemaUrl, query,
-        localContext as String
+        localContext as MultiValueMap<String, String>
     ) }
 
+    @Suppress("UNCHECKED_CAST")
     private fun queryRetriever(graphqlQueryUrl: String) = AsyncQueryRetriever { _, _, query, localContext -> retrieve(graphqlQueryUrl, query.query,
-        localContext as String
+        localContext as MultiValueMap<String, String>
     ) }
 
     @Bean
@@ -65,12 +69,13 @@ class LiloConfiguration {
     /**
      * Query the GraphQL endpoint
      */
-    private fun retrieve(graphqlUrl: String, query: String, authHeader: String): CompletableFuture<String?> {
+    private fun retrieve(graphqlUrl: String, query: String, headerMap: MultiValueMap<String, String>): CompletableFuture<String?> {
+        val headers = Consumer<HttpHeaders> { it.addAll(headerMap) }
         return webClient
             .post()
             .uri(graphqlUrl)
+            .headers(headers)
             .bodyValue(query)
-            .header(HttpHeaders.AUTHORIZATION, authHeader)
             .retrieve()
             .toEntity(String::class.java)
             .mapNotNull { obj ->
@@ -81,14 +86,7 @@ class LiloConfiguration {
 /**
  * Helper for using Lilo within a suspending function.
  */
-suspend fun Lilo.stitchAwait(request: GraphQLRequest): ExecutionResult {
-    return this.stitchAwait(request, null)
-}
-
-/**
- * Helper for using Lilo within a suspending function.
- */
-suspend fun Lilo.stitchAwait(request: GraphQLRequest, header: String?): ExecutionResult {
-    val resultFuture = this.stitchAsync(request.toExecutionInput(header))
+suspend fun Lilo.stitchAwait(request: GraphQLRequest, headers: MultiValueMap<String, String>): ExecutionResult {
+    val resultFuture = this.stitchAsync(request.toExecutionInput(headers))
     return Mono.fromCompletionStage(resultFuture).awaitSingle()
 }
