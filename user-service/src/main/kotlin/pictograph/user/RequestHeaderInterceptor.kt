@@ -11,6 +11,7 @@ import java.util.*
 @Component
 class RequestHeaderInterceptor : WebGraphQlInterceptor {
     override fun intercept(request: WebGraphQlRequest, chain: WebGraphQlInterceptor.Chain): Mono<WebGraphQlResponse> {
+        // Example of how to pull a custom header from an incoming WebGraphQlRequest
         val value = request.headers.getFirst("tenant-id")
         if(value != null) {
             request.configureExecutionInput { executionInput: ExecutionInput, builder: ExecutionInput.Builder ->
