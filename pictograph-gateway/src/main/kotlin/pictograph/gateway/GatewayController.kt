@@ -2,7 +2,6 @@ package pictograph.gateway
 
 import io.fria.lilo.GraphQLRequest
 import io.fria.lilo.Lilo
-import kotlinx.coroutines.reactor.awaitSingle
 import org.jetbrains.annotations.NotNull
 import org.springframework.web.bind.annotation.*
 

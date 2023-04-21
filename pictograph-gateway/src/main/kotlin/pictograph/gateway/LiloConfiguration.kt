@@ -1,6 +1,7 @@
 package pictograph.gateway
 
 import graphql.ExecutionResult
+import graphql.execution.instrumentation.tracing.TracingInstrumentation
 import io.fria.lilo.*
 import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.beans.factory.annotation.Value
@@ -25,29 +26,36 @@ class LiloConfiguration {
 
     @Bean
     fun lilo (
-        @Value("\${lilo.url.user}") userUrl: String,
-        @Value("\${lilo.url.pic}")  picUrl: String,
-        @Value("\${lilo.url.like}") likeUrl: String
+        @Value("\${lilo.graphqlurl.user}") userGraphQLUrl: String,
+        @Value("\${lilo.graphqlurl.pic}")  picGraphQUrl: String,
+        @Value("\${lilo.graphqlurl.like}") likeGraphQUrl: String,
+        @Value("\${lilo.instrumentation.tracing}") enableTracingInstrumentation: Boolean
     ): Lilo {
-        return Lilo.builder().addSource(
+        var builder = Lilo.builder().addSource(
             RemoteSchemaSource.create(
                 "userService",
-                introspectionRetriever(userUrl),
-                queryRetriever(userUrl)
+                introspectionRetriever(userGraphQLUrl),
+                queryRetriever(userGraphQLUrl)
             )
         ).addSource(
             RemoteSchemaSource.create(
                 "picService",
-                introspectionRetriever(picUrl),
-                queryRetriever(picUrl)
+                introspectionRetriever(picGraphQUrl),
+                queryRetriever(picGraphQUrl)
             )
         ).addSource(
             RemoteSchemaSource.create(
                 "likeService",
-                introspectionRetriever(likeUrl),
-                queryRetriever(likeUrl)
+                introspectionRetriever(likeGraphQUrl),
+                queryRetriever(likeGraphQUrl)
             )
-        ).build()
+        )
+
+        if(enableTracingInstrumentation) {
+            builder = builder.instrumentation(TracingInstrumentation())
+        }
+
+        return builder.build()
     }
 
     /**
