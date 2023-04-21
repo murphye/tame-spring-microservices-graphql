@@ -4,6 +4,7 @@ import graphql.ExecutionResult
 import graphql.execution.instrumentation.tracing.TracingInstrumentation
 import io.fria.lilo.*
 import kotlinx.coroutines.reactor.awaitSingle
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -16,9 +17,10 @@ import java.util.concurrent.CompletableFuture
 import java.util.function.Consumer
 
 @Configuration
-class LiloConfiguration {
-
-    private val webClient: WebClient = WebClient.builder()
+class LiloConfiguration(
+    @Autowired private val webClientBuilder: WebClient.Builder
+) {
+    private val webClient: WebClient = webClientBuilder
         .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
         .build()
 
