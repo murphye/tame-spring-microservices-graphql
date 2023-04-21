@@ -3,7 +3,6 @@ package pictograph.gateway
 import io.fria.lilo.GraphQLRequest
 import io.fria.lilo.Lilo
 import org.jetbrains.annotations.NotNull
-import org.springframework.http.HttpHeaders
 import org.springframework.util.MultiValueMap
 import org.springframework.web.bind.annotation.*
 
