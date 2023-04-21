@@ -20,9 +20,13 @@ class LiloConfiguration {
         .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
         .build()
 
-    private fun introspectionRetriever(graphqlSchemaUrl: String) = AsyncIntrospectionRetriever { _, _, query, _ -> get(graphqlSchemaUrl, query) }
+    private fun introspectionRetriever(graphqlSchemaUrl: String) = AsyncIntrospectionRetriever { _, _, query, localContext -> retrieve(graphqlSchemaUrl, query,
+        localContext as String
+    ) }
 
-    private fun queryRetriever(graphqlQueryUrl: String) = AsyncQueryRetriever { _, _, query, _ -> get(graphqlQueryUrl, query.query) }
+    private fun queryRetriever(graphqlQueryUrl: String) = AsyncQueryRetriever { _, _, query, localContext -> retrieve(graphqlQueryUrl, query.query,
+        localContext as String
+    ) }
 
     @Bean
     fun lilo (
@@ -61,11 +65,12 @@ class LiloConfiguration {
     /**
      * Query the GraphQL endpoint
      */
-    private fun get(graphqlUrl: String, query: String): CompletableFuture<String?> {
+    private fun retrieve(graphqlUrl: String, query: String, authHeader: String): CompletableFuture<String?> {
         return webClient
             .post()
             .uri(graphqlUrl)
             .bodyValue(query)
+            .header(HttpHeaders.AUTHORIZATION, authHeader)
             .retrieve()
             .toEntity(String::class.java)
             .mapNotNull { obj ->
@@ -77,6 +82,13 @@ class LiloConfiguration {
  * Helper for using Lilo within a suspending function.
  */
 suspend fun Lilo.stitchAwait(request: GraphQLRequest): ExecutionResult {
-    val resultFuture = this.stitchAsync(request.toExecutionInput())
+    return this.stitchAwait(request, null)
+}
+
+/**
+ * Helper for using Lilo within a suspending function.
+ */
+suspend fun Lilo.stitchAwait(request: GraphQLRequest, header: String?): ExecutionResult {
+    val resultFuture = this.stitchAsync(request.toExecutionInput(header))
     return Mono.fromCompletionStage(resultFuture).awaitSingle()
 }
