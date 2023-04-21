@@ -12,8 +12,10 @@ import java.util.*
 class RequestHeaderInterceptor : WebGraphQlInterceptor {
     override fun intercept(request: WebGraphQlRequest, chain: WebGraphQlInterceptor.Chain): Mono<WebGraphQlResponse> {
         val value = request.headers.getFirst("tenant-id")
-        request.configureExecutionInput { executionInput: ExecutionInput, builder: ExecutionInput.Builder ->
-            builder.graphQLContext(Collections.singletonMap<String, Any?>("tenantId", value)).build()
+        if(value != null) {
+            request.configureExecutionInput { executionInput: ExecutionInput, builder: ExecutionInput.Builder ->
+                builder.graphQLContext(Collections.singletonMap<String, Any?>("tenantId", value)).build()
+            }
         }
         return chain.next(request)
     }
