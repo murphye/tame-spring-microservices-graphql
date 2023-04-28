@@ -8,7 +8,7 @@
 docker run -d --name zipkin -p 9411:9411 openzipkin/zipkin
 ```
 
-Navigate your broker to http://localhost:9411
+Navigate your browser to http://localhost:9411
 
 ### 2. Run GraphQL Services for Pictograph
 
@@ -26,20 +26,14 @@ query='query($userId: ID) {
     user(userId: $userId) {
         userId
         userName
-        userAge
         userEmail
     }
     picsByUserId(userId: $userId) {
         picId
-        userId
         picUrl
-        picComment
     }
     likesByUserId(userId: $userId) {
-        userId
         picId
-        likeComment
-        likeCount
     }
 }'
 variables='{
@@ -61,31 +55,153 @@ EOF
     "user": {
       "userId": "murphye",
       "userName": "Eric",
-      "userAge": 43,
       "userEmail": "eric@murphy.com"
     },
     "picsByUserId": [
       {
         "picId": "123",
-        "userId": "murphye",
-        "picUrl": "https://cdn.pictograph.com/pics/123.jpg",
-        "picComment": "Check out my view of Mt. Rainier!"
+        "picUrl": "https://cdn.pictograph.com/pics/123.jpg"
       }
     ],
     "likesByUserId": [
       {
-        "userId": "murphye",
-        "picId": "234",
-        "likeComment": "Happy B-Day.",
-        "likeCount": 3
+        "picId": "234"
       },
       {
-        "userId": "murphye",
-        "picId": "456",
-        "likeComment": "Pretty!",
-        "likeCount": 1
+        "picId": "456"
       }
     ]
+  },
+  "extensions": {
+    "tracing": {
+      "version": 1,
+      "startTime": "2023-04-28T03:24:40.763514Z",
+      "endTime": "2023-04-28T03:24:40.798796Z",
+      "duration": 35294500,
+      "parsing": {
+        "startOffset": 1042042,
+        "duration": 974250
+      },
+      "validation": {
+        "startOffset": 1552625,
+        "duration": 497708
+      },
+      "execution": {
+        "resolvers": [
+          {
+            "path": [
+              "likesByUserId"
+            ],
+            "parentType": "Query",
+            "returnType": "[Like]",
+            "fieldName": "likesByUserId",
+            "startOffset": 3121833,
+            "duration": 27504375
+          },
+          {
+            "path": [
+              "likesByUserId",
+              0,
+              "picId"
+            ],
+            "parentType": "Like",
+            "returnType": "String",
+            "fieldName": "picId",
+            "startOffset": 30817083,
+            "duration": 10042
+          },
+          {
+            "path": [
+              "likesByUserId",
+              1,
+              "picId"
+            ],
+            "parentType": "Like",
+            "returnType": "String",
+            "fieldName": "picId",
+            "startOffset": 30891375,
+            "duration": 8292
+          },
+          {
+            "path": [
+              "picsByUserId"
+            ],
+            "parentType": "Query",
+            "returnType": "[Pic]",
+            "fieldName": "picsByUserId",
+            "startOffset": 2742375,
+            "duration": 28316292
+          },
+          {
+            "path": [
+              "picsByUserId",
+              0,
+              "picId"
+            ],
+            "parentType": "Pic",
+            "returnType": "ID!",
+            "fieldName": "picId",
+            "startOffset": 31108208,
+            "duration": 4375
+          },
+          {
+            "path": [
+              "picsByUserId",
+              0,
+              "picUrl"
+            ],
+            "parentType": "Pic",
+            "returnType": "String",
+            "fieldName": "picUrl",
+            "startOffset": 31131500,
+            "duration": 3042
+          },
+          {
+            "path": [
+              "user"
+            ],
+            "parentType": "Query",
+            "returnType": "User",
+            "fieldName": "user",
+            "startOffset": 1792375,
+            "duration": 33254250
+          },
+          {
+            "path": [
+              "user",
+              "userId"
+            ],
+            "parentType": "User",
+            "returnType": "ID!",
+            "fieldName": "userId",
+            "startOffset": 35145250,
+            "duration": 8125
+          },
+          {
+            "path": [
+              "user",
+              "userName"
+            ],
+            "parentType": "User",
+            "returnType": "String",
+            "fieldName": "userName",
+            "startOffset": 35175125,
+            "duration": 2792
+          },
+          {
+            "path": [
+              "user",
+              "userEmail"
+            ],
+            "parentType": "User",
+            "returnType": "String",
+            "fieldName": "userEmail",
+            "startOffset": 35197333,
+            "duration": 2625
+          }
+        ]
+      }
+    }
   }
 }
 ```
