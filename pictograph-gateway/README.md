@@ -1,5 +1,22 @@
 # Pictograph Gateway
 
+## Run the Demo
+
+### 1. Run Zipkin for Distributed Tracing Visualization
+
+```shell
+docker run -d --name zipkin -p 9411:9411 openzipkin/zipkin
+```
+
+Navigate your broker to http://localhost:9411
+
+### 2. Run GraphQL Services for Pictograph
+
+For `pictograph-gateway`, `pic-service`, `like-service`, and `user-service`, you can simply run `./gradlew bootRun` 
+separately in each project.
+
+In a separate terminal, prepare to run `curl` commands to run the demo.
+
 ## GraphQL Queries with Lilo
 
 ### Query a User with `curl`
