@@ -1,6 +1,6 @@
 package pictograph.pic
 
-data class Pic(
+data class Pic (
     var picId: String,
     var userId: String,
     var picUrl: String,
