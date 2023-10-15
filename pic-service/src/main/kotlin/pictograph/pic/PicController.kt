@@ -20,7 +20,6 @@ class PicController {
 
     @QueryMapping
     fun pics(): List<Pic> {
-        throw Exception("ooops!")
         return pics
     }
 
