@@ -26,6 +26,7 @@ class UserController {
 
     @QueryMapping
     fun users(): List<User> {
+        throw Exception("ooops!")
         return users
     }
 
