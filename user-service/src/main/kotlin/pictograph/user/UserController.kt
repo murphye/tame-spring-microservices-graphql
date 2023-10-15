@@ -25,7 +25,7 @@ class UserController {
     }
 
     @QueryMapping
-    fun users(@RequestHeader headers: MultiValueMap<String, String>): List<User> {
+    fun users(): List<User> {
         return users
     }
 
